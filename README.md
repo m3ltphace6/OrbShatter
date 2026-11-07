@@ -76,3 +76,7 @@ See [docs/PROOFS.md](docs/PROOFS.md) for the full test matrix.
 Orb Shatter is released under the MIT License (see [LICENSE](LICENSE)). You are free to use, modify and incorporate its source code into your own projects, provided that the original copyright and license notices are preserved.
 
 Credit to the original Orb Shatter project in your mod description is appreciated.
+
+## AI disclosure
+
+This mod was created with the help of AI (Claude, through Kiro). The code was tested in the retail game by the author. The test results and the limits are in [docs/PROOFS.md](docs/PROOFS.md).
