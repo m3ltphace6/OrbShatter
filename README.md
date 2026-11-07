@@ -6,7 +6,7 @@ Orb spells (vanilla ones and orbs from other mods) can also attack barrels, crat
 
 - Compatible with other orb mods.
 - No `.dsres`, no Skrit or GAS override.
-- Save-safe: nothing is written to saved
+- Save-safe
 
 Download the ready-to-use package from the Nexus Mods page ([Shatter Orb - Nexus](https://www.nexusmods.com/dungeonsiege1/mods/326)).
 
