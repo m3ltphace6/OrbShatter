@@ -1,0 +1,9 @@
+/out/
+*.obj
+*.pdb
+*.ilk
+*.exp
+*.lib
+*.log
+!docs/evidence/*.log
+*.dsdll

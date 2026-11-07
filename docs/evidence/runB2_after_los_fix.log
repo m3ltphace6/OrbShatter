@@ -1,0 +1,54 @@
+ATTACH pid=17952 enabled=1 containers=1 non_container_destructibles=1
+LOS_EXPORT found
+SPEC_SCAN GoMind::GetVisible(QtColl&,GopColl&) value=00499082 hits=4
+  HIT 001AEF4C [-6..+10]: 66522a31 00000024 00000000 001af01a 00000175 665322fc 00000000 001aefb0 00000001 001aef7c 66526217 00000024 00000000 001af074 0000011b 665322fc 00000000 
+  HIT 001AEFA4 [-6..+10]: 001af098 00000190 665322fc 00000000 001aefb0 665223a2 001af035 0000015a 665322fc 665322fc ee33b0ca 00400000 005ea909 76db6780 0000007e 6653900c 66539030 
+  HIT 032EACE8 [-6..+10]: 00000002 43062df2 00000001 0d17ccbc 032e8b20 032eac54 00499082 0d1529b2 00000000 030f0de0 01800058 00499082 00000644 0d15285c 0d152874 00000000 0000000b 
+  HIT 032EACFC [-6..+10]: 032eac54 00499082 0d1529b2 00000000 030f0de0 01800058 00499082 00000644 0d15285c 0d152874 00000000 0000000b 00000000 33179192 00000001 032eada8 032eac10 
+SPEC_SCAN Go::HasMind value=0047c22d hits=4
+  HIT 001AEF4C [-6..+10]: 66522a31 00000024 00000000 001af01a 00000175 665322fc 00000000 001aefb0 00000001 001aef7c 66526217 00000024 00000000 001af074 0000011b 665322fc 00000000 
+  HIT 001AEFA4 [-6..+10]: 001af098 00000190 665322fc 00000000 001aefb0 665223a2 001af035 0000015a 665322fc 665322fc ee33b0ca 00400000 005ea909 76db6780 0000007e 6653900c 66539030 
+  HIT 032ECAEC [-6..+10]: 00000000 24926fb3 00000000 032e4c2c 03069070 030690b4 0047c22d 0d1531ae 00000000 030f0f0c 01800058 0047c22d 000006b5 00000000 00000000 00000000 0000000b 
+  HIT 032ECB00 [-6..+10]: 030690b4 0047c22d 0d1531ae 00000000 030f0f0c 01800058 0047c22d 000006b5 00000000 00000000 00000000 0000000b 00000000 fbec58f8 00000001 032eddbc 030679dc 
+SPEC_SCAN Go::GetMind value=0047c229 hits=6
+SPEC_LOCATED GoMind::GetVisible(QtColl&,GopColl&) slot=032EACFC serial_id=1604 flags=01800058
+SPEC_LOCATED Go::HasMind slot=032ECB00 serial_id=1717 flags=01800058
+SPEC_LOCATED Go::GetMind slot=03069008 serial_id=532 flags=01800018
+SPEC_LOCATED Go::GetMind slot=032E4C4C serial_id=1240 flags=01800018
+INSTALLED inline_is=1 spec_patches=getvisible+hasmind+getmind
+SKRIT_GETVISIBLE n=1 traits=2:[47,13] ret_rva=00050c4b
+SKRIT_GETVISIBLE n=2 traits=2:[47,13] ret_rva=00050c4b
+CANDIDATE go=krug_scavenger breakable=1 actor=1 inside_inventory=0 item=0 container=0 life=-24.4 category=0
+CANDIDATE go=barrel_glb_fh_r1 breakable=1 actor=0 inside_inventory=0 item=1 container=1 life=1.0 category=1
+TARGET_ACCEPTED n=1 go=barrel_glb_fh_r1 category=container caster=farmgirl
+CANDIDATE go=chicken_white breakable=1 actor=1 inside_inventory=0 item=0 container=0 life=0.0 category=0
+HASMIND_OVERRIDE n=1
+GETMIND_OVERRIDE n=1
+GETMIND_OVERRIDE n=2
+HASMIND_OVERRIDE n=2
+GETMIND_OVERRIDE n=3
+HASMIND_OVERRIDE n=3
+SKRIT_GETVISIBLE n=3 traits=2:[47,13] ret_rva=00050c4b
+SKRIT_GETVISIBLE n=4 traits=2:[47,13] ret_rva=00050c4b
+PERF windows=32 GetVisible_engine_total_us=222 max_us=61 | mod_priority_total_us=1 max_us=0 | Is_calls=126 Is_mod_extra_total_us=138 max_us=36
+CANDIDATE go=krug_dog breakable=1 actor=1 inside_inventory=0 item=0 container=0 life=-19.1 category=0
+CANDIDATE go=krug_scout breakable=1 actor=1 inside_inventory=0 item=0 container=0 life=-20.3 category=0
+PERF windows=69 GetVisible_engine_total_us=171 max_us=41 | mod_priority_total_us=1 max_us=0 | Is_calls=190 Is_mod_extra_total_us=123 max_us=39
+CANDIDATE go=crate_glb_hc_r1 breakable=1 actor=0 inside_inventory=0 item=1 container=1 life=1.0 category=1
+TARGET_ACCEPTED n=7 go=crate_glb_hc_r1 category=container caster=farmgirl
+PRIORITY n=1 natural=1 viable=1 other=0 containers=2 removed=2 kept=monsters
+PRIORITY n=2 natural=3 viable=2 other=0 containers=1 removed=1 kept=monsters
+PRIORITY n=3 natural=2 viable=2 other=0 containers=1 removed=1 kept=monsters
+PRIORITY n=4 natural=1 viable=1 other=0 containers=1 removed=1 kept=monsters
+PERF windows=300 GetVisible_engine_total_us=1923 max_us=55 | mod_priority_total_us=144 max_us=46 | Is_calls=2019 Is_mod_extra_total_us=1178 max_us=48
+PRIORITY n=5 natural=1 viable=1 other=0 containers=1 removed=1 kept=monsters
+CANDIDATE go=barrel_glb_hc_r1 breakable=1 actor=0 inside_inventory=0 item=1 container=1 life=1.0 category=1
+TARGET_ACCEPTED n=41 go=barrel_glb_hc_r1 category=container caster=farmgirl
+CANDIDATE go=wall_glb_bricked_door_breakable breakable=1 actor=0 inside_inventory=0 item=1 container=0 life=10.0 category=2
+TARGET_ACCEPTED n=45 go=wall_glb_bricked_door_breakable category=other_destructible caster=farmgirl
+PRIORITY n=6 natural=4 viable=4 other=1 containers=6 removed=7 kept=monsters
+PERF windows=433 GetVisible_engine_total_us=1284 max_us=81 | mod_priority_total_us=74 max_us=44 | Is_calls=1338 Is_mod_extra_total_us=795 max_us=55
+CANDIDATE go=krug_scavenger_boss_01 breakable=1 actor=1 inside_inventory=0 item=0 container=0 life=-5.5 category=0
+PERF windows=555 GetVisible_engine_total_us=1462 max_us=54 | mod_priority_total_us=63 max_us=16 | Is_calls=1379 Is_mod_extra_total_us=681 max_us=33
+PERF windows=858 GetVisible_engine_total_us=2859 max_us=60 | mod_priority_total_us=47 max_us=7 | Is_calls=2711 Is_mod_extra_total_us=1196 max_us=20
+PERF windows=1144 GetVisible_engine_total_us=4229 max_us=29 | mod_priority_total_us=69 max_us=48 | Is_calls=4554 Is_mod_extra_total_us=1701 max_us=14

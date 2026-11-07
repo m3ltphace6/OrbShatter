@@ -1,0 +1,61 @@
+ATTACH pid=3104 enabled=1 containers=1 non_container_destructibles=1
+SPEC_SCAN GoMind::GetVisible(QtColl&,GopColl&) value=00499082 hits=4
+  HIT 001AEF4C [-6..+10]: 6f9029a1 00000024 00000000 001af01a 00000175 6f9122fc 00000000 001aefb0 00000001 001aef7c 6f906187 00000024 00000000 001af074 0000011b 6f9122fc 00000000 
+  HIT 001AEFA4 [-6..+10]: 001af098 00000190 6f9122fc 00000000 001aefb0 6f902312 001af035 0000015a 6f9122fc 6f9122fc d2cc4e3e 00400000 005ea909 76db6780 0000007e 6f91900c 6f919030 
+  HIT 031BACE8 [-6..+10]: 00000002 43062df2 00000001 0d17ccbc 031b8b20 031bac54 00499082 0d1529b2 00000000 02fc0de0 01800058 00499082 00000644 0d15285c 0d152874 00000000 0000000b 
+  HIT 031BACFC [-6..+10]: 031bac54 00499082 0d1529b2 00000000 02fc0de0 01800058 00499082 00000644 0d15285c 0d152874 00000000 0000000b 00000000 33179192 00000001 031bada8 031bac10 
+SPEC_SCAN Go::HasMind value=0047c22d hits=4
+  HIT 001AEF4C [-6..+10]: 6f9029a1 00000024 00000000 001af01a 00000175 6f9122fc 00000000 001aefb0 00000001 001aef7c 6f906187 00000024 00000000 001af074 0000011b 6f9122fc 00000000 
+  HIT 001AEFA4 [-6..+10]: 001af098 00000190 6f9122fc 00000000 001aefb0 6f902312 001af035 0000015a 6f9122fc 6f9122fc d2cc4e3e 00400000 005ea909 76db6780 0000007e 6f91900c 6f919030 
+  HIT 031BCAEC [-6..+10]: 00000000 24926fb3 00000000 031b4c2c 02be9070 02be90b4 0047c22d 0d1531ae 00000000 02fc0f0c 01800058 0047c22d 000006b5 00000000 00000000 00000000 0000000b 
+  HIT 031BCB00 [-6..+10]: 02be90b4 0047c22d 0d1531ae 00000000 02fc0f0c 01800058 0047c22d 000006b5 00000000 00000000 00000000 0000000b 00000000 fbec58f8 00000001 031bddbc 02be79dc 
+SPEC_SCAN Go::GetMind value=0047c229 hits=6
+SPEC_LOCATED GoMind::GetVisible(QtColl&,GopColl&) slot=031BACFC serial_id=1604 flags=01800058
+SPEC_LOCATED Go::HasMind slot=031BCB00 serial_id=1717 flags=01800058
+SPEC_LOCATED Go::GetMind slot=02BE9008 serial_id=532 flags=01800018
+SPEC_LOCATED Go::GetMind slot=031B4C4C serial_id=1240 flags=01800018
+INSTALLED inline_is=1 spec_patches=getvisible+hasmind+getmind
+SKRIT_GETVISIBLE n=1 traits=2:[47,13] ret_rva=00050c4b
+SKRIT_GETVISIBLE n=2 traits=2:[47,13] ret_rva=00050c4b
+SKRIT_GETVISIBLE n=3 traits=2:[47,13] ret_rva=00050c4b
+SKRIT_GETVISIBLE n=4 traits=2:[47,13] ret_rva=00050c4b
+CANDIDATE go=krug_scavenger breakable=1 actor=1 inside_inventory=0 item=0 container=0 life=-24.4 category=0
+CANDIDATE go=barrel_glb_fh_r1 breakable=1 actor=0 inside_inventory=0 item=1 container=1 life=1.0 category=1
+TARGET_ACCEPTED n=1 go=barrel_glb_fh_r1 category=container caster=farmgirl
+CANDIDATE go=chicken_white breakable=1 actor=1 inside_inventory=0 item=0 container=0 life=0.0 category=0
+HASMIND_OVERRIDE n=1
+GETMIND_OVERRIDE n=1
+GETMIND_OVERRIDE n=2
+HASMIND_OVERRIDE n=2
+GETMIND_OVERRIDE n=3
+HASMIND_OVERRIDE n=3
+PRIORITY n=1 natural=1 other=0 containers=2 removed=2 kept=monsters
+PERF windows=9 GetVisible_engine_total_us=21379 max_us=21335 | mod_priority_total_us=34 max_us=33 | Is_calls=34 Is_mod_extra_total_us=21350 max_us=21299
+PERF windows=21 GetVisible_engine_total_us=32 max_us=7 | mod_priority_total_us=0 max_us=0 | Is_calls=40 Is_mod_extra_total_us=13 max_us=3
+CANDIDATE go=krug_scout breakable=1 actor=1 inside_inventory=0 item=0 container=0 life=-17.4 category=0
+PERF windows=32 GetVisible_engine_total_us=82 max_us=45 | mod_priority_total_us=0 max_us=0 | Is_calls=74 Is_mod_extra_total_us=61 max_us=42
+PERF windows=43 GetVisible_engine_total_us=32 max_us=6 | mod_priority_total_us=0 max_us=0 | Is_calls=50 Is_mod_extra_total_us=11 max_us=3
+CANDIDATE go=crate_glb_hc_r1 breakable=1 actor=0 inside_inventory=0 item=1 container=1 life=1.0 category=1
+TARGET_ACCEPTED n=7 go=crate_glb_hc_r1 category=container caster=farmgirl
+PRIORITY n=2 natural=4 other=0 containers=3 removed=3 kept=monsters
+CANDIDATE go=krug_dog breakable=1 actor=1 inside_inventory=0 item=0 container=0 life=-19.2 category=0
+PRIORITY n=3 natural=3 other=0 containers=3 removed=3 kept=monsters
+CANDIDATE go=crate_glb_fh_r1 breakable=1 actor=0 inside_inventory=0 item=1 container=1 life=1.0 category=1
+TARGET_ACCEPTED n=12 go=crate_glb_fh_r1 category=container caster=farmgirl
+PRIORITY n=4 natural=2 other=0 containers=1 removed=1 kept=monsters
+PERF windows=55 GetVisible_engine_total_us=189 max_us=61 | mod_priority_total_us=13 max_us=6 | Is_calls=74 Is_mod_extra_total_us=164 max_us=56
+PRIORITY n=5 natural=1 other=0 containers=1 removed=1 kept=monsters
+PRIORITY n=6 natural=1 other=0 containers=1 removed=1 kept=monsters
+PERF windows=98 GetVisible_engine_total_us=491 max_us=28 | mod_priority_total_us=77 max_us=36 | Is_calls=488 Is_mod_extra_total_us=320 max_us=18
+CANDIDATE go=barrel_glb_hc_r1 breakable=1 actor=0 inside_inventory=0 item=1 container=1 life=1.0 category=1
+TARGET_ACCEPTED n=71 go=barrel_glb_hc_r1 category=container caster=farmgirl
+CANDIDATE go=wall_glb_bricked_door_breakable breakable=1 actor=0 inside_inventory=0 item=1 container=0 life=10.0 category=2
+TARGET_ACCEPTED n=104 go=wall_glb_bricked_door_breakable category=other_destructible caster=farmgirl
+PERF windows=106 GetVisible_engine_total_us=242 max_us=70 | mod_priority_total_us=5 max_us=1 | Is_calls=124 Is_mod_extra_total_us=186 max_us=49
+CANDIDATE go=krug_scavenger_boss_01 breakable=1 actor=1 inside_inventory=0 item=0 container=0 life=-6.3 category=0
+PERF windows=114 GetVisible_engine_total_us=201 max_us=59 | mod_priority_total_us=4 max_us=1 | Is_calls=150 Is_mod_extra_total_us=146 max_us=39
+PERF windows=160 GetVisible_engine_total_us=452 max_us=17 | mod_priority_total_us=2 max_us=0 | Is_calls=650 Is_mod_extra_total_us=201 max_us=6
+PERF windows=215 GetVisible_engine_total_us=601 max_us=25 | mod_priority_total_us=4 max_us=0 | Is_calls=825 Is_mod_extra_total_us=290 max_us=4
+PERF windows=293 GetVisible_engine_total_us=1368 max_us=39 | mod_priority_total_us=25 max_us=1 | Is_calls=869 Is_mod_extra_total_us=769 max_us=6
+PERF windows=387 GetVisible_engine_total_us=1598 max_us=41 | mod_priority_total_us=29 max_us=1 | Is_calls=979 Is_mod_extra_total_us=881 max_us=22
+PERF windows=484 GetVisible_engine_total_us=1462 max_us=25 | mod_priority_total_us=21 max_us=1 | Is_calls=1090 Is_mod_extra_total_us=731 max_us=6
