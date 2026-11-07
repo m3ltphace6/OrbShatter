@@ -79,4 +79,4 @@ Credit to the original Orb Shatter project in your mod description is appreciate
 
 ## AI disclosure
 
-This mod was created with the help of AI (Claude, through Kiro). The code was tested in the retail game by the author. The test results and the limits are in [docs/PROOFS.md](docs/PROOFS.md).
+This mod was created with the help of AI. The code was tested in the retail game by the author. The test results and the limits are in [docs/PROOFS.md](docs/PROOFS.md).
