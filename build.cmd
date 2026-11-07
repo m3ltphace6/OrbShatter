@@ -5,5 +5,5 @@ call "%VCVARS%" x86 >nul
 if errorlevel 1 exit /b 1
 cd /d "%~dp0"
 if not exist out mkdir out
-cl /nologo /W4 /WX /O2 /MT /LD /Fo:out\OrbContainerTargeting.obj src\OrbContainerTargeting.cpp /link /INCREMENTAL:NO /OUT:out\OrbContainerTargeting.dsdll
+cl /nologo /W4 /WX /O2 /MT /LD /Fo:out\OrbShatter.obj src\OrbShatter.cpp /link /INCREMENTAL:NO /OUT:out\OrbShatter.dsdll
 exit /b %errorlevel%

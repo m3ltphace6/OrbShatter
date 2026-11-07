@@ -1,4 +1,4 @@
-// Orb Container Targeting -- native DSDLL, runtime-only (no persistent state, nothing written to saves).
+// Orb Shatter -- native DSDLL, runtime-only (no persistent state, nothing written to saves).
 //
 // Mechanism (reuses the ORIGINAL orb Skrit loop, adds no shot of its own):
 //  1. The orb Skrit calls GoMind::GetVisible(QtColl{ENEMY,ALIVE_CONSCIOUS}, GopColl) through FuBi: SkritMachine reads
@@ -14,6 +14,8 @@
 // Everything is reverted at detach. Any profile mismatch or already-patched target refuses installation cleanly.
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
+#include <shlobj.h>
+#pragma comment(lib, "shell32.lib")
 #include <intrin.h>
 #include <stdio.h>
 #include <string.h>
@@ -21,7 +23,7 @@
 
 namespace {
 
-// ---------------- configuration (INI next to the DLL; read once at startup) ----------------
+// ---------------- configuration (Documents\Dungeon Siege LOA\OrbShatter.ini, or an INI next to the DLL; read once at startup) ----------------
 struct Config { bool enabled; bool containers; bool nonContainers; bool log; bool hookHasMind; bool hookGetMind; };
 Config g_cfg = { true, true, false, true, true, true };
 char g_dir[MAX_PATH] = "";
@@ -49,8 +51,39 @@ bool ReadBool(const char* ini, const char* section, const char* key, bool def) {
     return def;
 }
 
-void LoadConfig() {
-    char ini[MAX_PATH]; sprintf_s(ini, "%sOrbContainerTargeting.ini", g_dir);
+const char kDefaultIni[] =
+    "; Orb Shatter - configuration\r\n"
+    "; Read once when the game starts. Restart the game after editing.\r\n"
+    "; Missing or invalid values fall back to the defaults shown here.\r\n"
+    "\r\n"
+    "[General]\r\n"
+    "; false = the mod does nothing (vanilla orb behavior).\r\n"
+    "Enabled = true\r\n"
+    "\r\n"
+    "[Targeting]\r\n"
+    "; Offensive orbs may also attack destructible containers (barrels, crates...).\r\n"
+    "AttackContainers = true\r\n"
+    "; Offensive orbs may also attack other destructibles (cracks, breakable walls...).\r\n"
+    "; Priority when several kinds are in view: enemies > these > containers.\r\n"
+    "AttackNonContainerDestructibles = false\r\n"
+    "\r\n"
+    "[Diagnostics]\r\n"
+    "; Writes OrbShatter.log next to this file (short, capped).\r\n"
+    "Log = true\r\n"
+    "\r\n"
+    "[Experimental]\r\n"
+    "; Advanced. Leave on unless a conflict with another DSDLL is suspected.\r\n"
+    "SubstituteHasMind = true\r\n"
+    "SubstituteGetMind = true\r\n";
+
+bool WriteDefaultIni(const char* path) {
+    HANDLE f = CreateFileA(path, GENERIC_WRITE, 0, NULL, CREATE_NEW, FILE_ATTRIBUTE_NORMAL, NULL);
+    if (f == INVALID_HANDLE_VALUE) return false;
+    DWORD written = 0; BOOL ok = WriteFile(f, kDefaultIni, (DWORD)(sizeof(kDefaultIni) - 1), &written, NULL);
+    CloseHandle(f); return ok && written == sizeof(kDefaultIni) - 1;
+}
+
+void LoadConfig(const char* ini) {
     DWORD attrs = GetFileAttributesA(ini);
     if (attrs == INVALID_FILE_ATTRIBUTES) { Log("INI_ABSENT defaults used\r\n"); return; }
     g_cfg.enabled = ReadBool(ini, "General", "Enabled", true);
@@ -350,9 +383,27 @@ void Attach(HMODULE self) {
     if (!GetModuleFileNameA(self, path, MAX_PATH)) return;
     char* slash = strrchr(path, '\\'); if (!slash) return;
     slash[1] = 0; strcpy_s(g_dir, path);
-    char logPath[MAX_PATH]; sprintf_s(logPath, "%sOrbContainerTargeting.log", g_dir);
+    // Config folder: an INI next to the DLL wins (portable setup); otherwise the real Documents\Dungeon Siege LOA folder,
+    // where the default INI is created on first start (the game folder is usually write-protected).
+    char cfgDir[MAX_PATH]; char ini[MAX_PATH]; bool created = false;
+    sprintf_s(ini, "%sOrbShatter.ini", g_dir);
+    if (GetFileAttributesA(ini) != INVALID_FILE_ATTRIBUTES) {
+        strcpy_s(cfgDir, g_dir);
+    } else {
+        char docs[MAX_PATH];
+        if (SUCCEEDED(SHGetFolderPathA(NULL, CSIDL_PERSONAL, NULL, SHGFP_TYPE_CURRENT, docs))) {
+            sprintf_s(cfgDir, "%s\\Dungeon Siege LOA\\", docs);
+            CreateDirectoryA(cfgDir, NULL);
+            sprintf_s(ini, "%sOrbShatter.ini", cfgDir);
+            if (GetFileAttributesA(ini) == INVALID_FILE_ATTRIBUTES) created = WriteDefaultIni(ini);
+        } else {
+            strcpy_s(cfgDir, g_dir);
+        }
+    }
+    char logPath[MAX_PATH]; sprintf_s(logPath, "%sOrbShatter.log", cfgDir);
     g_log = CreateFileA(logPath, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
-    LoadConfig();
+    Log("CONFIG ini=%s created=%d\r\n", ini, (int)created);
+    LoadConfig(ini);
     if (!g_cfg.log && g_log != INVALID_HANDLE_VALUE) { CloseHandle(g_log); g_log = INVALID_HANDLE_VALUE; }
     Log("ATTACH pid=%lu enabled=%d containers=%d non_container_destructibles=%d\r\n", GetCurrentProcessId(), (int)g_cfg.enabled, (int)g_cfg.containers, (int)g_cfg.nonContainers);
     if (!g_cfg.enabled) { Log("DISABLED by INI: no engine change\r\n"); return; }

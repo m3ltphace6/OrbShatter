@@ -1,4 +1,4 @@
-# Orb Container Targeting
+# Orb Shatter
 
 Native orb mod for **Dungeon Siege: Legends of Aranna** (retail 1.50.0.0056).
 
@@ -12,23 +12,23 @@ Download the ready-to-use package from the Nexus Mods page (link to add).
 
 ## Installation
 
-1. Copy `OrbContainerTargeting.dsdll` and `OrbContainerTargeting.ini` into the Dungeon Siege game folder (next to `DungeonSiege.exe`).
-2. Launch the game.
+1. Copy `OrbShatter.dsdll` into the Dungeon Siege game folder (next to `DungeonSiege.exe`).
+2. Launch the game. The mod creates `Documents\Dungeon Siege LOA\OrbShatter.ini`.
 
-To uninstall, delete both files (and `OrbContainerTargeting.log` if present).
+To uninstall, delete the DSDLL, and `OrbShatter.ini` and `OrbShatter.log` from `Documents\Dungeon Siege LOA`.
 
 ## Configuration
 
-`OrbContainerTargeting.ini`, read from the DSDLL folder at game start.
+`Documents\Dungeon Siege LOA\OrbShatter.ini` is created with defaults on the first start and read at game start. The real Documents folder is used, including OneDrive redirection. An `OrbShatter.ini` placed next to the DSDLL takes priority (portable setup).
 
 | Key | Default | Effect |
 |---|---|---|
 | `[General] Enabled` | `true` | `false`: the mod does nothing |
 | `[Targeting] AttackContainers` | `true` | barrels, crates and other containers |
 | `[Targeting] AttackNonContainerDestructibles` | `false` | cracks, breakable walls and doors |
-| `[Diagnostics] Log` | `true` | short log next to the DSDLL |
+| `[Diagnostics] Log` | `true` | short `OrbShatter.log` next to the INI |
 
-If both targeting options are `false`, the game behaves as vanilla.
+If both targeting options are `false`, the game behaves as vanilla. A missing file or an invalid value falls back to the default.
 
 Target priority: living enemies in line of sight, then other destructibles, then containers.
 
@@ -50,17 +50,18 @@ Requirements: Visual Studio 2022 with the x86 C++ toolchain.
 build.cmd
 ```
 
-The output is `out\OrbContainerTargeting.dsdll`. Warnings are treated as errors. Set `VCVARS` to your `vcvarsall.bat` path if Visual Studio is installed elsewhere.
+The output is `out\OrbShatter.dsdll`. Warnings are treated as errors. Set `VCVARS` to your `vcvarsall.bat` path if Visual Studio is installed elsewhere.
 
 ## Repository layout
 
 | Path | Content |
 |---|---|
-| `src/OrbContainerTargeting.cpp` | the whole mod |
-| `config/OrbContainerTargeting.ini` | default configuration |
+| `src/OrbShatter.cpp` | the whole mod |
+| `config/OrbShatter.ini` | copy of the INI the mod creates |
 | `build.cmd` | command-line build |
 | `docs/PROOFS.md` | what was tested in the retail game, and the limits |
 | `docs/evidence/` | logs from the retail sessions |
+| `tools/` | helper to check that a save holds no mod data |
 
 ## Known limits
 

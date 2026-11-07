@@ -1,4 +1,4 @@
-﻿# Retail proofs and limits (v1.0)
+﻿# Retail proofs and limits (Orb Shatter v1.0)
 
 Environment: Dungeon Siege LOA 1.50 retail, isolated test home, Orb of Fire already cast in the test save.
 
@@ -13,6 +13,8 @@ Environment: Dungeon Siege LOA 1.50 retail, isolated test home, Orb of Fire alre
 | Default release INI | Verified | log `enabled=1 containers=1 non_container_destructibles=0`, `TARGET_ACCEPTED barrel_glb_fh_r1` |
 | `Enabled=false` | Verified (one 40 s run) | log `DISABLED by INI: no engine change`, no hook installed, no `TARGET_ACCEPTED`; barrel intact in screenshot |
 | `AttackNonContainerDestructibles=false` | Verified (one session) | log `containers=1 non_container_destructibles=0`; crate and barrel accepted; user reported the crack was not attacked while a crate/barrel was |
+| INI in Documents (v1.0 final build) | Verified (one run each) | no INI next to the DLL: log `CONFIG ini=...\Documents\Dungeon Siege LOA\OrbShatter.ini created=1`, defaults used, `TARGET_ACCEPTED barrel_glb_fh_r1`. INI next to the DLL: read from there (`created=0`). |
+| `AttackContainers=false` in the Documents INI | Verified | log `containers=0`, barrel listed as `CANDIDATE` and never accepted (0 `TARGET_ACCEPTED`); the user also saw the orb stop attacking barrels in game |
 | Original cadence, projectile, damage | By design | the original orb script runs unchanged; only the candidate list changes |
 | Speed cost | Verified | about 0.2 ms per 5 s window (`PERF` log lines) |
 | Coexists with Ikkyo DSDLLs | Verified | ikkyo_loa + ikkyoplus_loa loaded together, long session |
