@@ -67,7 +67,6 @@ The output is `out\OrbShatter.dsdll`. Warnings are treated as errors. Set `VCVAR
 
 - An enemy that is visible and in line of sight but cannot be attacked for another reason can still hide a destructible. Two orb checks (attackable flag and start-up state) are not replicated.
 - The mod assumes the game thread is the only caller of the patched functions.
-- Other DSDLLs that also change orb targeting were not tested.
 
 See [docs/PROOFS.md](docs/PROOFS.md) for the full test matrix.
 
