@@ -70,3 +70,9 @@ The output is `out\OrbShatter.dsdll`. Warnings are treated as errors. Set `VCVAR
 - Other DSDLLs that also change orb targeting were not tested.
 
 See [docs/PROOFS.md](docs/PROOFS.md) for the full test matrix.
+
+## License
+
+Orb Shatter is released under the MIT License (see [LICENSE](LICENSE)). You are free to use, modify and incorporate its source code into your own projects, provided that the original copyright and license notices are preserved.
+
+Credit to the original Orb Shatter project in your mod description is appreciated.
