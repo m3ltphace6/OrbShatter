@@ -2,13 +2,13 @@
 
 Native orb mod for **Dungeon Siege: Legends of Aranna** (retail 1.50.0.0056).
 
-Orb spells (Orb of Fire and orbs from other mods) can also attack barrels, crates, cracks and breakable walls. The orb keeps its own shot, damage, rhythm and effects. The mod only widens the list of things the orb may pick. Living enemies always come first.
+Orb spells (vanilla ones and orbs from other mods) can also attack barrels, crates, cracks and breakable walls. The orb keeps its own shot, damage, rhythm and effects. Living enemies always come first.
 
-- Compatible with other orb mods (Firstie's Orbs, Refreshing Orbs).
+- Compatible with other orb mods.
 - No `.dsres`, no Skrit or GAS override.
-- Save-safe: nothing is written to saves, and a save loads without the mod.
+- Save-safe: nothing is written to saved
 
-Download the ready-to-use package from the Nexus Mods page (link to add).
+Download the ready-to-use package from the Nexus Mods page ([Shatter Orb - Nexus](https://www.nexusmods.com/dungeonsiege1/mods/326)).
 
 ## Installation
 
